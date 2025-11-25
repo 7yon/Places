@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if command -v swiftlint &> /dev/null; then
+    swiftlint --strict
+else
+    echo "SwiftLint is not installed, run 'brew install swiftlint' to install it"
+    exit 1
+fi
