@@ -10,12 +10,11 @@ import UIKit
 
 final class SystemURLOpener: URLOpener {
     func open(_ url: URL) async -> Bool {
-        await MainActor.run {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                return true
-            } else {
-                return false
+        await withCheckedContinuation { continuation in
+            Task { @MainActor in
+                UIApplication.shared.open(url, options: [:]) { result in
+                    continuation.resume(returning: result)
+                }
             }
         }
     }
