@@ -8,10 +8,7 @@
 import Foundation
 
 struct Location: Identifiable, Hashable, Equatable {
-    var id: String {
-        "\(latitude)_\(longitude)_\(name ?? "")"
-    }
-
+    let id = UUID()
     let name: String?
     let latitude: Double
     let longitude: Double
