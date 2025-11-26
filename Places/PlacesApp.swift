@@ -11,7 +11,8 @@ import SwiftUI
 struct PlacesApp: App {
     var body: some Scene {
         WindowGroup {
-            PlacesListView(places: [.amsterdam, .newYork, .london, .unknown])
+            PlacesListView(viewModel: PlacesViewModel(repository: PlacesRepositoryImpl(),
+                                                      coordinator: PlacesCoordinator(urlOpener: SystemURLOpener())))
         }
     }
 }

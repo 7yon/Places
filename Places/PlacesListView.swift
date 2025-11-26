@@ -8,24 +8,53 @@
 import SwiftUI
 
 struct PlacesListView: View {
-    let places: [Location]
+    let viewModel: PlacesViewModelProtocol
+
+    init(viewModel: PlacesViewModelProtocol) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         NavigationStack {
-            List(places) { location in
-                NavigationLink(value: location) {
-                    LocationRow(location: location)
+            Group {
+                switch viewModel.state {
+                case .idle:
+                    EmptyView()
+                case .loading:
+                    ProgressView()
+                case .loaded(let locations):
+                    List(locations) { location in
+                        LocationRow(location: location) { selected in
+                            Task {
+                                await viewModel.didSelect(location: selected)
+                            }
+                        }
+                        .accessibilityHint("Double-tap to open in Wikipedia")
+                    }
+                case .error(let message):
+                    Text(message)
                 }
-                .accessibilityHint("Double-top to open in Wikipedia")
             }
-//            .navigationDestination(for: Location.self) { location in
-//
-//            }
+
             .navigationTitle("Places")
+            .alert(viewModel.activeAlert, isPresented: Binding(
+                get: { !viewModel.activeAlert.isEmpty },
+                set: { isPresented in
+                    if !isPresented { viewModel.didCloseAlert() }
+                }
+            )) {
+                Button("OK", role: .cancel) {
+                    viewModel.didCloseAlert()
+                }
+            }
+        }
+        .task {
+            await viewModel.loadPlaces()
         }
     }
 }
 
 #Preview {
-    PlacesListView(places: [.amsterdam, .newYork, .unknown])
+    let state: PlacesViewModel.ViewState = .loaded(locations: [.amsterdam])
+    PlacesListView(viewModel: PlacesViewModelPreview(state: state))
 }
