@@ -11,6 +11,8 @@ struct LocationRow: View {
 
     let location: Location
 
+    let onSelect: (Location) -> Void
+
     var body: some View {
         let name = location.name ?? "Unknown location"
 
@@ -19,6 +21,9 @@ struct LocationRow: View {
                 .font(.headline)
             Text("Latitude: \(location.latitude)")
             Text("Longitude: \(location.longitude)")
+        }
+        .onTapGesture {
+            onSelect(location)
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityElement(children: .ignore)
@@ -29,8 +34,8 @@ struct LocationRow: View {
 
 #Preview {
     Group {
-        LocationRow(location: .amsterdam)
+        LocationRow(location: .amsterdam) { _ in }
 
-        LocationRow(location: .unknown)
+        LocationRow(location: .unknown) { _ in }
     }
 }
