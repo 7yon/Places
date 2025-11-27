@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520937512ED8ABA7006074C6 /* NeedleFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 520937502ED8ABA7006074C6 /* NeedleFoundation */; };
+		520937532ED8ABA7006074C6 /* NeedleFoundationTest in Frameworks */ = {isa = PBXBuildFile; productRef = 520937522ED8ABA7006074C6 /* NeedleFoundationTest */; };
 		526D7D622ED82C0F00D55C31 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 526D7D612ED82C0F00D55C31 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520937532ED8ABA7006074C6 /* NeedleFoundationTest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520937512ED8ABA7006074C6 /* NeedleFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +101,7 @@
 			);
 			name = PlacesUnitTests;
 			packageProductDependencies = (
+				520937522ED8ABA7006074C6 /* NeedleFoundationTest */,
 			);
 			productName = PlacesUnitTests;
 			productReference = 526D7D752ED8371900D55C31 /* PlacesUnitTests.xctest */;
@@ -106,6 +111,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52A62A8A2ED58EFB00329DC3 /* Build configuration list for PBXNativeTarget "Places" */;
 			buildPhases = (
+				520937462ED8A6D7006074C6 /* Run Script (Needle) */,
 				52A62A7B2ED58EFA00329DC3 /* Sources */,
 				52A62A8E2ED5C9D600329DC3 /* Run Script (SwiftLint) */,
 				52A62A7C2ED58EFA00329DC3 /* Frameworks */,
@@ -120,6 +126,7 @@
 			);
 			name = Places;
 			packageProductDependencies = (
+				520937502ED8ABA7006074C6 /* NeedleFoundation */,
 			);
 			productName = Places;
 			productReference = 52A62A7F2ED58EFA00329DC3 /* Places.app */;
@@ -153,6 +160,9 @@
 			);
 			mainGroup = 52A62A762ED58EFA00329DC3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5209374F2ED8ABA7006074C6 /* XCRemoteSwiftPackageReference "needle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 52A62A802ED58EFA00329DC3 /* Products */;
 			projectDirPath = "";
@@ -183,6 +193,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		520937462ED8A6D7006074C6 /* Run Script (Needle) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script (Needle)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nset -e\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin\"\nexport XBS_DISABLE_SANDBOXING=1\n\necho \"Running Needle code generation...\"\n\nneedle generate \"$SRCROOT/Places/NeedleGenerated.swift\" \"$SRCROOT/Places/\"\n\necho \"Needle completed successfully.\"\n";
+		};
 		52A62A8E2ED5C9D600329DC3 /* Run Script (SwiftLint) */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,6 +523,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5209374F2ED8ABA7006074C6 /* XCRemoteSwiftPackageReference "needle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uber/needle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		520937502ED8ABA7006074C6 /* NeedleFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5209374F2ED8ABA7006074C6 /* XCRemoteSwiftPackageReference "needle" */;
+			productName = NeedleFoundation;
+		};
+		520937522ED8ABA7006074C6 /* NeedleFoundationTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5209374F2ED8ABA7006074C6 /* XCRemoteSwiftPackageReference "needle" */;
+			productName = NeedleFoundationTest;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52A62A772ED58EFA00329DC3 /* Project object */;
 }

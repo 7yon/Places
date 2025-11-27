@@ -7,3 +7,6 @@ brew update
 
 # Install SwiftLint
 brew install swiftlint
+
+# Install Needle (DI)
+brew install needle
