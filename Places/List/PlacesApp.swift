@@ -11,11 +11,13 @@ import NeedleFoundation
 @main
 struct PlacesApp: App {
 
+    init() {
+        registerProviderFactories()
+    }
+
     var body: some Scene {
         WindowGroup {
-            registerProviderFactories()
-            let rootComponent = RootComponent()
-            return rootComponent.listComponent.view
+            return RootComponent().listComponent.view
         }
     }
 }
