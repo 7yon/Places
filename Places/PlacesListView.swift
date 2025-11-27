@@ -24,26 +24,26 @@ struct PlacesListView: View {
                     ProgressView()
                 case .loaded(let locations):
                     List(locations) { location in
-                        LocationRow(location: location) { selected in
+                        LocationRowView(location: location) { selected in
                             Task {
                                 await viewModel.didSelect(location: selected)
                             }
                         }
-                        .accessibilityHint("Double-tap to open in Wikipedia")
+                        .accessibilityHint(.placeItemAccessibilityHint)
                     }
                 case .error(let message):
                     Text(message)
                 }
             }
 
-            .navigationTitle("Places")
+            .navigationTitle(.placesListTitle)
             .alert(viewModel.activeAlert, isPresented: Binding(
-                get: { !viewModel.activeAlert.isEmpty },
+                get: { !String(localized: viewModel.activeAlert).isEmpty },
                 set: { isPresented in
                     if !isPresented { viewModel.didCloseAlert() }
                 }
             )) {
-                Button("OK", role: .cancel) {
+                Button(.commonAlertLabelOk, role: .cancel) {
                     viewModel.didCloseAlert()
                 }
             }

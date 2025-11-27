@@ -10,7 +10,7 @@ import Observation
 
 protocol PlacesViewModelProtocol {
     var state: PlacesViewModel.ViewState { get }
-    var activeAlert: String { get }
+    var activeAlert: LocalizedStringResource { get }
     func loadPlaces() async
     func didSelect(location: Location) async
     func didCloseAlert()
@@ -18,7 +18,7 @@ protocol PlacesViewModelProtocol {
 
 class PlacesViewModelPreview: PlacesViewModelProtocol {
     var state: PlacesViewModel.ViewState = .idle
-    var activeAlert: String = ""
+    var activeAlert: LocalizedStringResource = ""
 
     init(state: PlacesViewModel.ViewState) {
         self.state = state
@@ -38,7 +38,7 @@ class PlacesViewModel: PlacesViewModelProtocol {
         case idle
         case loading
         case loaded(locations: [Location])
-        case error(message: String)
+        case error(message: LocalizedStringResource)
 
         var isLoading: Bool {
             switch self {
@@ -58,7 +58,7 @@ class PlacesViewModel: PlacesViewModelProtocol {
     }
 
     var state: ViewState = .idle
-    var activeAlert: String = ""
+    var activeAlert: LocalizedStringResource = ""
 
     private let repository: PlacesRepository
     private let coordinator: PlacesCoordinator
@@ -78,7 +78,7 @@ class PlacesViewModel: PlacesViewModelProtocol {
                 }
             state = .loaded(locations: locations)
         } catch {
-            state = .error(message: "Failed to fetch places")
+            state = .error(message: .placesListLabelFetchError)
         }
     }
 
@@ -91,7 +91,7 @@ class PlacesViewModel: PlacesViewModelProtocol {
         let result = await coordinator.openDeepLink(url)
 
         if !result {
-            activeAlert = "Wikipedia app is not installed"
+            activeAlert = .placesListAlertNoWikipedia
         }
     }
 
