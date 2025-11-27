@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct PlacesDTO: Codable {
-    let locations: [LocationDTO]
-}
-
 class PlacesRepositoryImpl: PlacesRepository {
     private let decoder = JSONDecoder()
 
