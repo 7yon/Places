@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import NeedleFoundation
 
 @main
 struct PlacesApp: App {
+
     var body: some Scene {
         WindowGroup {
-            PlacesListView(viewModel: PlacesViewModel(repository: PlacesRepositoryImpl(),
-                                                      coordinator: PlacesCoordinator(urlOpener: SystemURLOpener())))
+            registerProviderFactories()
+            let rootComponent = RootComponent()
+            return rootComponent.listComponent.view
         }
     }
 }

@@ -11,7 +11,6 @@ class PlacesRepositoryImpl: PlacesRepository {
     private let decoder = JSONDecoder()
 
     func fetchPlaces() async throws -> PlacesDTO {
-        // swiftlint:disable:next line_length
         guard let url = URL(string: "https://raw.githubusercontent.com/abnamrocoesd/assignment-ios/main/locations.json") else {
             throw URLError(.badServerResponse)
         }
