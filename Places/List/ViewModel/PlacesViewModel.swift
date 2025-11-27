@@ -8,54 +8,9 @@
 import Foundation
 import Observation
 
-protocol PlacesViewModelProtocol {
-    var state: PlacesViewModel.ViewState { get }
-    var activeAlert: LocalizedStringResource { get }
-    func loadPlaces() async
-    func didSelect(location: Location) async
-    func didCloseAlert()
-}
-
-class PlacesViewModelPreview: PlacesViewModelProtocol {
-    var state: PlacesViewModel.ViewState = .idle
-    var activeAlert: LocalizedStringResource = ""
-
-    init(state: PlacesViewModel.ViewState) {
-        self.state = state
-    }
-
-    func loadPlaces() async { }
-
-    func didSelect(location: Location) async { }
-
-    func didCloseAlert() { }
-}
-
 @MainActor
 @Observable
 class PlacesViewModel: PlacesViewModelProtocol {
-    enum ViewState {
-        case idle
-        case loading
-        case loaded(locations: [Location])
-        case error(message: LocalizedStringResource)
-
-        var isLoading: Bool {
-            switch self {
-            case .loading:
-                return true
-            default:
-                return false
-            }
-        }
-
-        var locations: [Location] {
-            guard case .loaded(let locations) = self else {
-                return []
-            }
-            return locations
-        }
-    }
 
     var state: ViewState = .idle
     var activeAlert: LocalizedStringResource = ""
