@@ -10,6 +10,9 @@ import SwiftUI
 struct PlacesListView: View {
     let viewModel: PlacesViewModelProtocol
 
+    @State
+    var customLocationPresented = false
+
     init(viewModel: PlacesViewModelProtocol) {
         self.viewModel = viewModel
     }
@@ -37,6 +40,15 @@ struct PlacesListView: View {
             }
 
             .navigationTitle(.placesListTitle)
+            .toolbar(content: {
+                Button {
+                    customLocationPresented = true
+                } label: {
+                    Text(.placesListToolbarButtonCustomLocation)
+                }.navigationDestination(isPresented: $customLocationPresented) {
+                    CustomLocationView()
+                }
+            })
             .alert(viewModel.activeAlert, isPresented: Binding(
                 get: { !String(localized: viewModel.activeAlert).isEmpty },
                 set: { isPresented in
