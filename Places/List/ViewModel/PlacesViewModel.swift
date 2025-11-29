@@ -15,11 +15,11 @@ class PlacesViewModel: PlacesViewModelProtocol {
     var activeAlert: LocalizedStringResource = ""
 
     private let repository: PlacesRepository
-    private let appCoordinator: AppCoordinator
+    private let coordinator: Coordinator
 
-    init(repository: PlacesRepository, appCoordinator: AppCoordinator) {
+    init(repository: PlacesRepository, coordinator: Coordinator) {
         self.repository = repository
-        self.appCoordinator = appCoordinator
+        self.coordinator = coordinator
     }
 
     func loadPlaces() async {
@@ -41,12 +41,12 @@ class PlacesViewModel: PlacesViewModelProtocol {
     }
 
     func didSelectCustomLocation() {
-        appCoordinator.route(to: .customLocation)
+        coordinator.route(to: .customLocation)
     }
 
     private func openWikipedia(for location: Location) async {
-        let result = await appCoordinator.route(to: .wikipedia(latitude: location.latitude,
-                                                               longitude: location.longitude))
+        let result = await coordinator.route(to: .wikipedia(latitude: location.latitude,
+                                                            longitude: location.longitude))
 
         if !result {
             activeAlert = .placesListAlertNoWikipedia

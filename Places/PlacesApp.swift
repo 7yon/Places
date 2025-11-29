@@ -20,7 +20,7 @@ struct PlacesApp: App {
         WindowGroup {
             let rootComponent = RootComponent(environment: environment)
 
-            return RootView(coordinator: rootComponent.coordinator)
+            return RootView(coordinator: rootComponent.appCoordinator)
         }
     }
 }

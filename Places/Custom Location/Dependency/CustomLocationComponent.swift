@@ -9,7 +9,7 @@ import Foundation
 import NeedleFoundation
 
 protocol CustomLocationDependency: Dependency {
-    var coordinator: AppCoordinator { get }
+    var coordinator: Coordinator { get }
 }
 
 nonisolated class CustomLocationComponent: Component<CustomLocationDependency> {

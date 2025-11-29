@@ -35,10 +35,15 @@ nonisolated class RootComponent: BootstrapComponent {
     }
 
     @MainActor
-    public var coordinator: AppCoordinator {
+    var appCoordinator: AppCoordinator {
         shared {
             AppCoordinator(rootComponent: self,
                            urlOpener: urlOpener)
         }
+    }
+
+    @MainActor
+    public var coordinator: Coordinator {
+        appCoordinator
     }
 }

@@ -20,7 +20,7 @@ private class ListDependency9c2f5b85fb6808210ea1Provider: ListDependency {
     var apiClient: ApiClient {
         return rootComponent.apiClient
     }
-    var coordinator: AppCoordinator {
+    var coordinator: Coordinator {
         return rootComponent.coordinator
     }
     private let rootComponent: RootComponent
@@ -33,7 +33,7 @@ private func factory2ecbff52c934651ff190b3a8f24c1d289f2c0f2e(_ component: Needle
     return ListDependency9c2f5b85fb6808210ea1Provider(rootComponent: parent1(component) as! RootComponent)
 }
 private class CustomLocationDependency5b37b7f43133f5ca915aProvider: CustomLocationDependency {
-    var coordinator: AppCoordinator {
+    var coordinator: Coordinator {
         return rootComponent.coordinator
     }
     private let rootComponent: RootComponent
@@ -50,7 +50,7 @@ private func factory695679b9fa9338fe7f48b3a8f24c1d289f2c0f2e(_ component: Needle
 extension ListComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\ListDependency.apiClient] = "apiClient-ApiClient"
-        keyPathToName[\ListDependency.coordinator] = "coordinator-AppCoordinator"
+        keyPathToName[\ListDependency.coordinator] = "coordinator-Coordinator"
     }
 }
 extension RootComponent: NeedleFoundation.Registration {
@@ -61,12 +61,12 @@ extension RootComponent: NeedleFoundation.Registration {
         localTable["apiClient-ApiClient"] = { [unowned self] in self.apiClient as Any }
         localTable["listComponent-ListComponent"] = { [unowned self] in self.listComponent as Any }
         localTable["customLocation-CustomLocationComponent"] = { [unowned self] in self.customLocation as Any }
-        localTable["coordinator-AppCoordinator"] = { [unowned self] in self.coordinator as Any }
+        localTable["coordinator-Coordinator"] = { [unowned self] in self.coordinator as Any }
     }
 }
 extension CustomLocationComponent: NeedleFoundation.Registration {
     public func registerItems() {
-        keyPathToName[\CustomLocationDependency.coordinator] = "coordinator-AppCoordinator"
+        keyPathToName[\CustomLocationDependency.coordinator] = "coordinator-Coordinator"
     }
 }
 

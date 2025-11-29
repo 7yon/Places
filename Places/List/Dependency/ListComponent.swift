@@ -10,7 +10,7 @@ import NeedleFoundation
 
 protocol ListDependency: Dependency {
     var apiClient: ApiClient { get }
-    var coordinator: AppCoordinator { get }
+    var coordinator: Coordinator { get }
 }
 
 nonisolated class ListComponent: Component<ListDependency> {
@@ -23,7 +23,7 @@ nonisolated class ListComponent: Component<ListDependency> {
     @MainActor
     var viewModel: PlacesViewModel {
         PlacesViewModel(repository: repository,
-                        appCoordinator: dependency.coordinator)
+                        coordinator: dependency.coordinator)
     }
 
     @MainActor

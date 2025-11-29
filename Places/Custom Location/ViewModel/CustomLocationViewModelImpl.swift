@@ -19,9 +19,9 @@ class CustomLocationViewModelImpl: CustomLocationViewModel {
 
     private let numberFormatter = NumberFormatter()
     private let coordinatesValidator: CoordinatesValidator
-    private let coordinator: AppCoordinator
+    private let coordinator: Coordinator
 
-    init(coordinatesValidator: CoordinatesValidator, coordinator: AppCoordinator) {
+    init(coordinatesValidator: CoordinatesValidator, coordinator: Coordinator) {
         self.coordinatesValidator = coordinatesValidator
         self.coordinator = coordinator
     }
