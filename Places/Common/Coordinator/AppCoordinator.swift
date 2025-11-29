@@ -7,13 +7,14 @@
 
 import Foundation
 import SwiftUI
+import NeedleFoundation
 
-enum Route: Hashable {
+enum Route: Hashable, Codable {
     case placesList
     case customLocation
 }
 
-enum Deeplink: Hashable {
+enum Deeplink: Hashable, Codable {
     case wikipedia(latitude: Double, longitude: Double)
 }
 
@@ -22,17 +23,22 @@ protocol Coordinator {
     func route(to deeplink: Deeplink) async -> Bool
 }
 
+protocol AppCoordinatorDependency: Dependency {
+    var urlOpener: URLOpener { get }
+    var listView: AnyView { get }
+    var customLocationView: AnyView { get }
+}
+
 @Observable
-class AppCoordinator: Coordinator {
+nonisolated class AppCoordinator: Coordinator {
+
     var path = NavigationPath()
 
-    private let rootComponent: RootComponent
-
+    private let viewResolver: CoordinatorViewResolver
     private let urlOpener: URLOpener
 
-    init(rootComponent: RootComponent,
-         urlOpener: URLOpener) {
-        self.rootComponent = rootComponent
+    init(viewResolver: CoordinatorViewResolver, urlOpener: URLOpener) {
+        self.viewResolver = viewResolver
         self.urlOpener = urlOpener
     }
 
@@ -41,12 +47,13 @@ class AppCoordinator: Coordinator {
     }
 
     @ViewBuilder
+    @MainActor
     func view(for route: Route) -> some View {
         switch route {
         case .placesList:
-            rootComponent.listComponent.view
+            viewResolver.listView
         case .customLocation:
-            rootComponent.customLocation.view
+            viewResolver.customLocationView
         }
     }
 
