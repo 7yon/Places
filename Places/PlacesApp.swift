@@ -18,7 +18,9 @@ struct PlacesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            return RootComponent(environment: .production).listComponent.view
+            let rootComponent = RootComponent(environment: environment)
+
+            return RootView(coordinator: rootComponent.coordinator)
         }
     }
 }

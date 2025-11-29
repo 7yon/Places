@@ -17,11 +17,11 @@ private func parent1(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 #if !NEEDLE_DYNAMIC
 
 private class ListDependency9c2f5b85fb6808210ea1Provider: ListDependency {
-    var urlOpener: any URLOpener {
-        return rootComponent.urlOpener
-    }
     var apiClient: ApiClient {
         return rootComponent.apiClient
+    }
+    var coordinator: AppCoordinator {
+        return rootComponent.coordinator
     }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
@@ -40,12 +40,20 @@ extension RootComponent: NeedleFoundation.Registration {
         localTable["environment-AppEnvironment"] = { [unowned self] in self.environment as Any }
         localTable["urlOpener-any URLOpener"] = { [unowned self] in self.urlOpener as Any }
         localTable["apiClient-ApiClient"] = { [unowned self] in self.apiClient as Any }
+        localTable["listComponent-ListComponent"] = { [unowned self] in self.listComponent as Any }
+        localTable["customLocation-CustomLocationComponent"] = { [unowned self] in self.customLocation as Any }
+        localTable["coordinator-AppCoordinator"] = { [unowned self] in self.coordinator as Any }
     }
 }
 extension ListComponent: NeedleFoundation.Registration {
     public func registerItems() {
-        keyPathToName[\ListDependency.urlOpener] = "urlOpener-any URLOpener"
         keyPathToName[\ListDependency.apiClient] = "apiClient-ApiClient"
+        keyPathToName[\ListDependency.coordinator] = "coordinator-AppCoordinator"
+    }
+}
+extension CustomLocationComponent: NeedleFoundation.Registration {
+    public func registerItems() {
+
     }
 }
 
@@ -66,6 +74,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 @inline(never) private func register1() {
     registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->RootComponent->ListComponent", factory2ecbff52c934651ff190b3a8f24c1d289f2c0f2e)
+    registerProviderFactory("^->RootComponent->CustomLocationComponent", factoryEmptyDependencyProvider)
 }
 #endif
 
