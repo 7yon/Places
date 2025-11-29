@@ -17,7 +17,6 @@ final class CustomLocationSnapshotTests: XCTestCase {
         
 //         SnapshotTesting.isRecording = true
     }
-    
 
     func testDefaultState() {
         let viewModel = MockCustomLocationViewModel()
