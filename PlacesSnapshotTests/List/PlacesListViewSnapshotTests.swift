@@ -35,7 +35,7 @@ final class PlacesListViewSnapshotTests: XCTestCase {
         assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13)))
     }
     
-    func testErrorState() {
+    func testErrorStateView() {
         let viewModel = MockPlacesViewModel()
         viewModel.state = .error(message: "Error occured")
         let view = PlacesListView(viewModel: viewModel)
