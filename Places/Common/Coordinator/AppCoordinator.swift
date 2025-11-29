@@ -9,26 +9,6 @@ import Foundation
 import SwiftUI
 import NeedleFoundation
 
-enum Route: Hashable, Codable {
-    case placesList
-    case customLocation
-}
-
-enum Deeplink: Hashable, Codable {
-    case wikipedia(latitude: Double, longitude: Double)
-}
-
-protocol Coordinator {
-    func route(to route: Route)
-    func route(to deeplink: Deeplink) async -> Bool
-}
-
-protocol AppCoordinatorDependency: Dependency {
-    var urlOpener: URLOpener { get }
-    var listView: AnyView { get }
-    var customLocationView: AnyView { get }
-}
-
 @Observable
 nonisolated class AppCoordinator: Coordinator {
 

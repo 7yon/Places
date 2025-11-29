@@ -21,6 +21,19 @@ private func parent2(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
 
 #if !NEEDLE_DYNAMIC
 
+private class CoordinatorDependency0f71d0b6ef2bb3d907eeProvider: CoordinatorDependency {
+    var urlOpener: URLOpener {
+        return rootComponent.urlOpener
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
+    }
+}
+/// ^->RootComponent->CoordinatorComponent
+private func factory8dc1270a3a9a35cfa51db3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return CoordinatorDependency0f71d0b6ef2bb3d907eeProvider(rootComponent: parent1(component) as! RootComponent)
+}
 private class ListDependencyfecbdc575a7460ee2a75Provider: ListDependency {
     var apiClient: ApiClient {
         return rootComponent.apiClient
@@ -50,21 +63,14 @@ private class CustomLocationDependency4111dd6f55e6bc4d82c1Provider: CustomLocati
 private func factory24540fb03fdc21174c44a9403e3301bb54f80df0(_ component: NeedleFoundation.Scope) -> AnyObject {
     return CustomLocationDependency4111dd6f55e6bc4d82c1Provider(rootComponent: parent2(component) as! RootComponent)
 }
-private class CoordinatorDependency0f71d0b6ef2bb3d907eeProvider: CoordinatorDependency {
-    var urlOpener: URLOpener {
-        return rootComponent.urlOpener
-    }
-    private let rootComponent: RootComponent
-    init(rootComponent: RootComponent) {
-        self.rootComponent = rootComponent
-    }
-}
-/// ^->RootComponent->CoordinatorComponent
-private func factory8dc1270a3a9a35cfa51db3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
-    return CoordinatorDependency0f71d0b6ef2bb3d907eeProvider(rootComponent: parent1(component) as! RootComponent)
-}
 
 #else
+extension CoordinatorComponent: NeedleFoundation.Registration {
+    public func registerItems() {
+        keyPathToName[\CoordinatorDependency.urlOpener] = "urlOpener-URLOpener"
+
+    }
+}
 extension ListComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\ListDependency.apiClient] = "apiClient-ApiClient"
@@ -85,12 +91,6 @@ extension CustomLocationComponent: NeedleFoundation.Registration {
         keyPathToName[\CustomLocationDependency.coordinator] = "coordinator-Coordinator"
     }
 }
-extension CoordinatorComponent: NeedleFoundation.Registration {
-    public func registerItems() {
-        keyPathToName[\CoordinatorDependency.urlOpener] = "urlOpener-URLOpener"
-
-    }
-}
 
 
 #endif
@@ -107,10 +107,10 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 #if !NEEDLE_DYNAMIC
 
 @inline(never) private func register1() {
+    registerProviderFactory("^->RootComponent->CoordinatorComponent", factory8dc1270a3a9a35cfa51db3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->CoordinatorComponent->ListComponent", factory8a8bc51579ede1162164a9403e3301bb54f80df0)
     registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->RootComponent->CoordinatorComponent->CustomLocationComponent", factory24540fb03fdc21174c44a9403e3301bb54f80df0)
-    registerProviderFactory("^->RootComponent->CoordinatorComponent", factory8dc1270a3a9a35cfa51db3a8f24c1d289f2c0f2e)
 }
 #endif
 
