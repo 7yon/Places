@@ -13,5 +13,6 @@ protocol PlacesViewModelProtocol {
 
     func loadPlaces() async
     func didSelect(location: Location) async
+    func didSelectCustomLocation()
     func didCloseAlert()
 }

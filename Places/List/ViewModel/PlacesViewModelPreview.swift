@@ -19,5 +19,7 @@ class PlacesViewModelPreview: PlacesViewModelProtocol {
 
     func didSelect(location: Location) async { }
 
+    func didSelectCustomLocation() { }
+
     func didCloseAlert() { }
 }

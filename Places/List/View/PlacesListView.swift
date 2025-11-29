@@ -10,9 +10,6 @@ import SwiftUI
 struct PlacesListView: View {
     let viewModel: PlacesViewModelProtocol
 
-    @State
-    var customLocationPresented = false
-
     init(viewModel: PlacesViewModelProtocol) {
         self.viewModel = viewModel
     }
@@ -43,11 +40,9 @@ struct PlacesListView: View {
             .navigationTitle(.placesListTitle)
             .toolbar(content: {
                 Button {
-                    customLocationPresented = true
+                    viewModel.didSelectCustomLocation()
                 } label: {
                     Text(.placesListToolbarButtonCustomLocation)
-                }.navigationDestination(isPresented: $customLocationPresented) {
-                    CustomLocationView()
                 }
                 .accessibilityIdentifier("PlacesListView_customLocationButton")
             })
