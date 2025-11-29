@@ -8,6 +8,7 @@
 import SwiftUI
 import XCTest
 import SnapshotTesting
+import PlacesCore
 @testable import Places
 
 final class PlacesListViewSnapshotTests: XCTestCase {

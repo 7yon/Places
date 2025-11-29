@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import PlacesCore
 @testable import Places
 
 final class CustomLocationViewModelTests: XCTestCase {

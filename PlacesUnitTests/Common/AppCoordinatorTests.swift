@@ -7,6 +7,7 @@
 
 import XCTest
 import SwiftUI
+import PlacesCore
 @testable import Places
 
 final class AppCoordinatorTests: XCTestCase {

@@ -6,11 +6,11 @@
 //
 
 import Foundation
-@testable import Places
+import PlacesCore
 
 class MockCoordinator: Coordinator {
-    private(set) var routes: [Places.Route] = []
-    private(set) var deeplinks: [Places.Deeplink] = []
+    private(set) var routes: [Route] = []
+    private(set) var deeplinks: [Deeplink] = []
     
     private let deeplinkResult: Bool
     
@@ -18,11 +18,11 @@ class MockCoordinator: Coordinator {
         self.deeplinkResult = deeplinkResult
     }
     
-    func route(to route: Places.Route) {
+    func route(to route: Route) {
         routes.append(route)
     }
     
-    func route(to deeplink: Places.Deeplink) async -> Bool {
+    func route(to deeplink: Deeplink) async -> Bool {
         deeplinks.append(deeplink)
         
         return deeplinkResult

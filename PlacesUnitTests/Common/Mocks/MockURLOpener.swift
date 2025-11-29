@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import Places
+import PlacesCore
 
 class MockURLOpener: URLOpener {
     let result: Bool

@@ -6,18 +6,18 @@
 //
 
 import Foundation
-@testable import Places
+import PlacesCore
 
 class MockPlacesRepository: PlacesRepository {
-    let places: PlacesDTO
+    let places: [Location]
     let error: Error?
 
-    init(places: PlacesDTO = .mock, error: Error? = nil) {
+    init(places: [Location] = [.amsterdam, .london, .unknown], error: Error? = nil) {
         self.places = places
         self.error = error
     }
 
-    func fetchPlaces() async throws -> PlacesDTO {
+    func fetchPlaces() async throws -> [Location] {
         if let error {
             throw error
         }

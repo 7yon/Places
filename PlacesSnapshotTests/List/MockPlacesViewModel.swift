@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlacesCore
 @testable import Places
 
 class MockPlacesViewModel: PlacesViewModelProtocol {
@@ -15,7 +16,7 @@ class MockPlacesViewModel: PlacesViewModelProtocol {
     
     func loadPlaces() async { }
     
-    func didSelect(location: Places.Location) async { }
+    func didSelect(location: Location) async { }
     
     func didSelectCustomLocation() { }
     
