@@ -17,8 +17,13 @@ enum Deeplink: Hashable {
     case wikipedia(latitude: Double, longitude: Double)
 }
 
+protocol Coordinator {
+    func route(to route: Route)
+    func route(to deeplink: Deeplink) async -> Bool
+}
+
 @Observable
-class AppCoordinator {
+class AppCoordinator: Coordinator {
     var path = NavigationPath()
 
     private let rootComponent: RootComponent
