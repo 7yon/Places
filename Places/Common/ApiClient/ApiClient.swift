@@ -11,12 +11,16 @@ enum ApiError: Error {
     case decodingError
     case invalidStatusCode
     case unknown(Error)
+
+    // Add more cases as needed to provide more granular error handling.
 }
 
+/// An environment-aware API client for performing network requests.
 protocol ApiClient {
-    /// Executes a request with a given path. If error occures, `ApiError` will be thrown.
+    /// Executes the specified request. Throws an `ApiError` if the operation fails.
     ///
-    /// - Parameter request: information about request to be made
-    /// - Returns: either decoded data or throws `ApiError`
+    /// - Parameter request: Information describing the request to perform.
+    /// - Returns: The decoded response of type `T`.
+    /// - Throws: An `ApiError` if the response is invalid or decoding fails.
     func execute<T: Decodable>(_ request: Request) async throws -> T
 }
