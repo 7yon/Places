@@ -26,7 +26,19 @@ nonisolated class RootComponent: BootstrapComponent {
         return URLSessionApiClient(config: environment.configuration)
     }
 
-    var listComponent: ListComponent {
+    public var listComponent: ListComponent {
         ListComponent(parent: self)
+    }
+
+    public var customLocation: CustomLocationComponent {
+        CustomLocationComponent(parent: self)
+    }
+
+    @MainActor
+    public var coordinator: AppCoordinator {
+        shared {
+            AppCoordinator(rootComponent: self,
+                           urlOpener: urlOpener)
+        }
     }
 }
