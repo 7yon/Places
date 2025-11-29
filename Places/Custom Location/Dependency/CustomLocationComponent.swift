@@ -9,10 +9,10 @@ import Foundation
 import NeedleFoundation
 
 protocol CustomLocationDependency: Dependency {
-
+    var coordinator: AppCoordinator { get }
 }
 
-nonisolated class CustomLocationComponent: Component<EmptyDependency> {
+nonisolated class CustomLocationComponent: Component<CustomLocationDependency> {
 
     @MainActor
     var coordinatesValidator: CoordinatesValidator {
@@ -21,7 +21,8 @@ nonisolated class CustomLocationComponent: Component<EmptyDependency> {
 
     @MainActor
     var viewModel: CustomLocationViewModel {
-        CustomLocationViewModelImpl(coordinatesValidator: coordinatesValidator)
+        CustomLocationViewModelImpl(coordinatesValidator: coordinatesValidator,
+                                    coordinator: dependency.coordinator)
     }
 
     @MainActor

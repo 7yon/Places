@@ -32,8 +32,27 @@ private class ListDependency9c2f5b85fb6808210ea1Provider: ListDependency {
 private func factory2ecbff52c934651ff190b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
     return ListDependency9c2f5b85fb6808210ea1Provider(rootComponent: parent1(component) as! RootComponent)
 }
+private class CustomLocationDependency5b37b7f43133f5ca915aProvider: CustomLocationDependency {
+    var coordinator: AppCoordinator {
+        return rootComponent.coordinator
+    }
+    private let rootComponent: RootComponent
+    init(rootComponent: RootComponent) {
+        self.rootComponent = rootComponent
+    }
+}
+/// ^->RootComponent->CustomLocationComponent
+private func factory695679b9fa9338fe7f48b3a8f24c1d289f2c0f2e(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return CustomLocationDependency5b37b7f43133f5ca915aProvider(rootComponent: parent1(component) as! RootComponent)
+}
 
 #else
+extension ListComponent: NeedleFoundation.Registration {
+    public func registerItems() {
+        keyPathToName[\ListDependency.apiClient] = "apiClient-ApiClient"
+        keyPathToName[\ListDependency.coordinator] = "coordinator-AppCoordinator"
+    }
+}
 extension RootComponent: NeedleFoundation.Registration {
     public func registerItems() {
 
@@ -45,15 +64,9 @@ extension RootComponent: NeedleFoundation.Registration {
         localTable["coordinator-AppCoordinator"] = { [unowned self] in self.coordinator as Any }
     }
 }
-extension ListComponent: NeedleFoundation.Registration {
-    public func registerItems() {
-        keyPathToName[\ListDependency.apiClient] = "apiClient-ApiClient"
-        keyPathToName[\ListDependency.coordinator] = "coordinator-AppCoordinator"
-    }
-}
 extension CustomLocationComponent: NeedleFoundation.Registration {
     public func registerItems() {
-
+        keyPathToName[\CustomLocationDependency.coordinator] = "coordinator-AppCoordinator"
     }
 }
 
@@ -72,9 +85,9 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
 #if !NEEDLE_DYNAMIC
 
 @inline(never) private func register1() {
-    registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
     registerProviderFactory("^->RootComponent->ListComponent", factory2ecbff52c934651ff190b3a8f24c1d289f2c0f2e)
-    registerProviderFactory("^->RootComponent->CustomLocationComponent", factoryEmptyDependencyProvider)
+    registerProviderFactory("^->RootComponent", factoryEmptyDependencyProvider)
+    registerProviderFactory("^->RootComponent->CustomLocationComponent", factory695679b9fa9338fe7f48b3a8f24c1d289f2c0f2e)
 }
 #endif
 

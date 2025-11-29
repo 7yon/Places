@@ -30,7 +30,9 @@ struct CustomLocationView: View {
             Section {
                 if viewModel.coordinatesAreValid {
                     Button {
-
+                        Task {
+                            await viewModel.didSelectOpenInWikipedia()
+                        }
                     } label: {
                         Text(.customLocationButtonOpenWikipedia)
                     }
@@ -39,6 +41,16 @@ struct CustomLocationView: View {
                     Text(.customLocationLabelErrorInvalidCoordinates)
                         .foregroundColor(.red)
                 }
+            }
+        }
+        .alert(viewModel.activeAlert, isPresented: Binding(
+            get: { !String(localized: viewModel.activeAlert).isEmpty },
+            set: { isPresented in
+                if !isPresented { viewModel.didCloseAlert() }
+            }
+        )) {
+            Button(.commonAlertLabelOk, role: .cancel) {
+                viewModel.didCloseAlert()
             }
         }
     }

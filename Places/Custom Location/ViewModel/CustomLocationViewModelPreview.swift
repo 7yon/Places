@@ -13,9 +13,13 @@ class CustomLocationViewModelPreview: CustomLocationViewModel {
 
     var coordinatesAreValid: Bool
 
+    var activeAlert: LocalizedStringResource = ""
+
     init(coordinatesAreValid: Bool = true) {
         self.coordinatesAreValid = coordinatesAreValid
     }
 
-    func coordinatesDidChange(latitude: String, longitude: String) { }
+    func didSelectOpenInWikipedia() async { }
+
+    func didCloseAlert() { }
 }

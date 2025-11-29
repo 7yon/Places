@@ -13,5 +13,9 @@ protocol CustomLocationViewModel {
 
     var coordinatesAreValid: Bool { get }
 
-    func coordinatesDidChange(latitude: String, longitude: String)
+    var activeAlert: LocalizedStringResource { get }
+
+    func didSelectOpenInWikipedia() async
+
+    func didCloseAlert()
 }

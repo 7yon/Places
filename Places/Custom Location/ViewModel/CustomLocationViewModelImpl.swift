@@ -12,23 +12,52 @@ class CustomLocationViewModelImpl: CustomLocationViewModel {
     var latitude: String = ""
     var longitude: String = ""
 
-    var coordinatesAreValid: Bool = false
+    private var validLatitude: Double?
+    private var validLongitude: Double?
 
+    var activeAlert: LocalizedStringResource = ""
+
+    private let numberFormatter = NumberFormatter()
     private let coordinatesValidator: CoordinatesValidator
+    private let coordinator: AppCoordinator
 
-    init(coordinatesValidator: CoordinatesValidator) {
+    init(coordinatesValidator: CoordinatesValidator, coordinator: AppCoordinator) {
         self.coordinatesValidator = coordinatesValidator
+        self.coordinator = coordinator
     }
 
-    func coordinatesDidChange(latitude: String, longitude: String) {
-        guard !latitude.isEmpty, !longitude.isEmpty else {
-            coordinatesAreValid = false
+    var coordinatesAreValid: Bool {
+        guard !latitude.isEmpty, !longitude.isEmpty,
+              let latitude = numberFormatter.number(from: latitude)?.doubleValue,
+              let longitude = numberFormatter.number(from: longitude)?.doubleValue
+        else {
+            return false
+        }
+
+        let result = coordinatesValidator.isValid(latitude: latitude, longitude: longitude)
+
+        validLatitude = result ? latitude : nil
+        validLongitude = result ? longitude : nil
+
+        return result
+    }
+
+    func didSelectOpenInWikipedia() async {
+        guard coordinatesAreValid,
+              let validLatitude,
+              let validLongitude else {
             return
         }
 
-        let latitude = Double(latitude) ?? 0.0
-        let longitude = Double(longitude) ?? 0.0
+        let result = await coordinator.route(to: .wikipedia(latitude: validLatitude,
+                                                            longitude: validLongitude))
 
-        coordinatesAreValid = coordinatesValidator.isValid(latitude: latitude, longitude: longitude)
+        if !result {
+            activeAlert = .placesListAlertNoWikipedia
+        }
+    }
+
+    func didCloseAlert() {
+        activeAlert = ""
     }
 }
