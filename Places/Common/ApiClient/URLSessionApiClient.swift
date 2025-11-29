@@ -17,9 +17,9 @@ class URLSessionApiClient: ApiClient {
     }
 
     func execute<T: Decodable>(_ request: Request) async throws -> T {
-        var url = config.baseURL.appending(path: request.path)
+        let url = config.baseURL.appending(path: request.path)
 
-        let (data, response) = try await data(from: url)
+        let (data, _) = try await data(from: url)
 
         let decodedResponse = try decode(T.self, from: data)
 
