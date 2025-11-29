@@ -42,4 +42,14 @@ class PlacesListRobot {
         
         return CustomLocationRobot()
     }
+    
+    func performAccessibilityAudit() throws {
+        try XCUIApplication().performAccessibilityAudit() { issue in
+            if issue.auditType == .dynamicType && issue.element?.identifier == "PlacesListView_customLocationButton" {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
 }

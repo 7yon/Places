@@ -17,17 +17,20 @@ struct CustomLocationView: View {
 
     var body: some View {
         Form {
-            Section(header: Text(.customLocationSectionHeader),
-                    footer: Text(.customLocationSectionFooter)) {
+            Section(header: Text(.customLocationSectionHeader)
+                .accessibilityIdentifier("CustomLocationView_sectionHeader"),
+                    footer: Text(.customLocationSectionFooter)
+                .accessibilityIdentifier("CustomLocationView_sectionFooter")) {
 
-                TextField(String(localized: .customLocationInputPlaceholderLatitude), text: $viewModel.latitude)
-                    .textFieldStyle(CoordinateTextFieldStyle())
-                    .accessibilityIdentifier("CustomLocationView_latitudeTextField")
+                    TextField(String(localized: .customLocationInputPlaceholderLatitude), text: $viewModel.latitude)
+                        .textFieldStyle(CoordinateTextFieldStyle())
+                        .accessibilityIdentifier("CustomLocationView_latitudeTextField")
 
-                TextField(String(localized: .customLocationInputPlaceholderLongitude), text: $viewModel.longitude)
-                    .textFieldStyle(CoordinateTextFieldStyle())
-                    .accessibilityIdentifier("CustomLocationView_longitudeTextField")
-            }
+                    TextField(String(localized: .customLocationInputPlaceholderLongitude), text: $viewModel.longitude)
+                        .textFieldStyle(CoordinateTextFieldStyle())
+                        .accessibilityIdentifier("CustomLocationView_longitudeTextField")
+                }
+                .accessibilityIdentifier("CustomLocationView_coordinatesSection")
 
             Section {
                 if viewModel.coordinatesAreValid {

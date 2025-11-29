@@ -52,6 +52,25 @@ class CustomLocationRobot {
         XCTAssertTrue(invalidCoordinatesErrorLabel.waitForExistence(timeout: 3))
         return self
     }
+    
+    func performAccessibilityAudit() throws {
+        let ignored = ["CustomLocationView_sectionHeader",
+                       "CustomLocationView_sectionFooter",
+                       "CustomLocationView_coordinatesSection",
+                       "CustomLocationView_invariantCoordinatesErrorLabel"]
+        
+        try XCUIApplication().performAccessibilityAudit() { issue in
+            
+            guard let element = issue.element else { return false }
+            
+            if issue.auditType == .elementDetection || issue.auditType == .contrast,
+                ignored.firstIndex(of: element.identifier) != nil {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
 }
 
 fileprivate extension XCUIElement {
