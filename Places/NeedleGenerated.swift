@@ -20,6 +20,9 @@ private class ListDependency9c2f5b85fb6808210ea1Provider: ListDependency {
     var urlOpener: any URLOpener {
         return rootComponent.urlOpener
     }
+    var apiClient: ApiClient {
+        return rootComponent.apiClient
+    }
     private let rootComponent: RootComponent
     init(rootComponent: RootComponent) {
         self.rootComponent = rootComponent
@@ -34,12 +37,15 @@ private func factory2ecbff52c934651ff190b3a8f24c1d289f2c0f2e(_ component: Needle
 extension RootComponent: NeedleFoundation.Registration {
     public func registerItems() {
 
+        localTable["environment-AppEnvironment"] = { [unowned self] in self.environment as Any }
         localTable["urlOpener-any URLOpener"] = { [unowned self] in self.urlOpener as Any }
+        localTable["apiClient-ApiClient"] = { [unowned self] in self.apiClient as Any }
     }
 }
 extension ListComponent: NeedleFoundation.Registration {
     public func registerItems() {
         keyPathToName[\ListDependency.urlOpener] = "urlOpener-any URLOpener"
+        keyPathToName[\ListDependency.apiClient] = "apiClient-ApiClient"
     }
 }
 

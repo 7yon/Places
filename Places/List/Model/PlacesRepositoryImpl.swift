@@ -8,17 +8,16 @@
 import Foundation
 
 class PlacesRepositoryImpl: PlacesRepository {
-    private let decoder = JSONDecoder()
+    private let apiClient: ApiClient
+
+    init(apiClient: ApiClient) {
+        self.apiClient = apiClient
+    }
 
     func fetchPlaces() async throws -> PlacesDTO {
-        guard let url = URL(string: "https://raw.githubusercontent.com/abnamrocoesd/assignment-ios/main/locations.json") else {
-            throw URLError(.badServerResponse)
-        }
+        let request = Request(path: "locations.json")
+        let places: PlacesDTO = try await apiClient.execute(request)
 
-        let (data, response) = try await URLSession.shared.data(from: url)
-
-        let decodedResponse = try decoder.decode(PlacesDTO.self, from: data)
-
-        return decodedResponse
+        return places
     }
 }

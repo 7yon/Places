@@ -10,6 +10,7 @@ import NeedleFoundation
 
 protocol ListDependency: Dependency {
     var urlOpener: any URLOpener { get }
+    var apiClient: ApiClient { get }
 }
 
 nonisolated class ListComponent: Component<ListDependency> {
@@ -20,7 +21,7 @@ nonisolated class ListComponent: Component<ListDependency> {
 
     @MainActor
     var repository: PlacesRepository {
-        PlacesRepositoryImpl()
+        PlacesRepositoryImpl(apiClient: dependency.apiClient)
     }
 
     @MainActor
