@@ -36,4 +36,10 @@ class PlacesListRobot {
         XCTAssertTrue(customLocationButtoon.waitForExistence(timeout: 3.0))
         return self
     }
+    
+    func selectCustomCoordinatesButton() -> CustomLocationRobot {
+        customLocationButtoon.tap()
+        
+        return CustomLocationRobot()
+    }
 }

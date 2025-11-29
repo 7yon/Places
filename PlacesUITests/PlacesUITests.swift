@@ -10,7 +10,7 @@ import XCTest
 final class PlacesUITests: XCTestCase {
 
     @MainActor
-    func testPlaces() throws {
+    func testPlaces() {
         let app = XCUIApplication()
         app.launch()
         
@@ -18,5 +18,20 @@ final class PlacesUITests: XCTestCase {
             .assertPlacesList()
             .assertFirstLocation()
             .assertCustomLocationButtonIsVisible()
+    }
+    
+    func testCustomLocation() {
+        let app = XCUIApplication()
+        app.launch()
+        
+        PlacesListRobot()
+            .assertPlacesList()
+            .selectCustomCoordinatesButton()
+            .enter(latitude: "0,0")
+            .enter(longitude: "0,0")
+            .assertWikipediaButtonVisible()
+            .clearLatitude()
+            .enter(latitude: "1000")
+            .assertInvalidCoordinatesErrorLabelVisible()
     }
 }

@@ -22,9 +22,11 @@ struct CustomLocationView: View {
 
                 TextField(String(localized: .customLocationInputPlaceholderLatitude), text: $viewModel.latitude)
                     .textFieldStyle(CoordinateTextFieldStyle())
+                    .accessibilityIdentifier("CustomLocationView_latitudeTextField")
 
                 TextField(String(localized: .customLocationInputPlaceholderLongitude), text: $viewModel.longitude)
                     .textFieldStyle(CoordinateTextFieldStyle())
+                    .accessibilityIdentifier("CustomLocationView_longitudeTextField")
             }
 
             Section {
@@ -36,10 +38,12 @@ struct CustomLocationView: View {
                     } label: {
                         Text(.customLocationButtonOpenWikipedia)
                     }
+                    .accessibilityIdentifier("CustomLocationView_openWikipediaButton")
 
                 } else {
                     Text(.customLocationLabelErrorInvalidCoordinates)
                         .foregroundColor(.red)
+                        .accessibilityIdentifier("CustomLocationView_invariantCoordinatesErrorLabel")
                 }
             }
         }
