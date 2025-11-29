@@ -11,16 +11,15 @@ import Observation
 @MainActor
 @Observable
 class PlacesViewModel: PlacesViewModelProtocol {
-
     var state: ViewState = .idle
     var activeAlert: LocalizedStringResource = ""
 
     private let repository: PlacesRepository
-    private let coordinator: PlacesCoordinator
+    private let appCoordinator: AppCoordinator
 
-    init (repository: PlacesRepository, coordinator: PlacesCoordinator) {
+    init(repository: PlacesRepository, appCoordinator: AppCoordinator) {
         self.repository = repository
-        self.coordinator = coordinator
+        self.appCoordinator = appCoordinator
     }
 
     func loadPlaces() async {
@@ -41,9 +40,13 @@ class PlacesViewModel: PlacesViewModelProtocol {
         await openWikipedia(for: location)
     }
 
+    func didSelectCustomLocation() {
+        appCoordinator.route(to: .customLocation)
+    }
+
     private func openWikipedia(for location: Location) async {
-        let url = URL(string: "wikipedia://places?latitude=\(location.latitude)&longitude=\(location.longitude)")!
-        let result = await coordinator.openDeepLink(url)
+        let result = await appCoordinator.route(to: .wikipedia(latitude: location.latitude,
+                                                               longitude: location.longitude))
 
         if !result {
             activeAlert = .placesListAlertNoWikipedia
