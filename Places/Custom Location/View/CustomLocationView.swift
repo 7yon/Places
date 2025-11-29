@@ -9,12 +9,10 @@ import SwiftUI
 import MapKit
 
 struct CustomLocationView: View {
+    @State var viewModel: CustomLocationViewModel
 
-    @State private var latitude: String = ""
-    @State private var longitude: String = ""
-
-    var isValid: Bool {
-        validate(latitude: latitude, longitude: longitude)
+    init(viewModel: CustomLocationViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
@@ -22,15 +20,15 @@ struct CustomLocationView: View {
             Section(header: Text(.customLocationSectionHeader),
                     footer: Text(.customLocationSectionFooter)) {
 
-                TextField(String(localized: .customLocationInputPlaceholderLatitude), text: $latitude)
+                TextField(String(localized: .customLocationInputPlaceholderLatitude), text: $viewModel.latitude)
                     .textFieldStyle(CoordinateTextFieldStyle())
 
-                TextField(String(localized: .customLocationInputPlaceholderLongitude), text: $longitude)
+                TextField(String(localized: .customLocationInputPlaceholderLongitude), text: $viewModel.longitude)
                     .textFieldStyle(CoordinateTextFieldStyle())
             }
 
             Section {
-                if isValid {
+                if viewModel.coordinatesAreValid {
                     Button {
 
                     } label: {
@@ -44,20 +42,9 @@ struct CustomLocationView: View {
             }
         }
     }
-
-    func validate(latitude: String, longitude: String) -> Bool {
-        guard !latitude.isEmpty, !longitude.isEmpty else {
-            return false
-        }
-
-        let latitude = Double(latitude) ?? 0.0
-        let longitude = Double(longitude) ?? 0.0
-
-        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        return CLLocationCoordinate2DIsValid(coordinate)
-    }
 }
 
 #Preview {
-    CustomLocationView()
+    let viewModel = CustomLocationViewModelPreview(coordinatesAreValid: true)
+    CustomLocationView(viewModel: viewModel)
 }
