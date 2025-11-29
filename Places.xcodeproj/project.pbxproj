@@ -10,6 +10,8 @@
 		520937512ED8ABA7006074C6 /* NeedleFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 520937502ED8ABA7006074C6 /* NeedleFoundation */; };
 		520937532ED8ABA7006074C6 /* NeedleFoundationTest in Frameworks */ = {isa = PBXBuildFile; productRef = 520937522ED8ABA7006074C6 /* NeedleFoundationTest */; };
 		5231F5032EDB5D7C00EFC7FA /* PlacesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 5231F5022EDB5D7C00EFC7FA /* PlacesNetworking */; };
+		5231F7B22EDB713500EFC7FA /* PlacesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 5231F7B12EDB713500EFC7FA /* PlacesNetworking */; };
+		5231F7B52EDB717D00EFC7FA /* PlacesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 5231F7B42EDB717D00EFC7FA /* PlacesNetworking */; };
 		525097C32EDB52F40067E30C /* PlacesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 525097C22EDB52F40067E30C /* PlacesCore */; };
 		525321A42ED8BD9E0041DD69 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 525321A32ED8BD9E0041DD69 /* SnapshotTesting */; };
 		526D7D622ED82C0F00D55C31 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 526D7D612ED82C0F00D55C31 /* Localizable.xcstrings */; };
@@ -114,7 +116,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5231F7B22EDB713500EFC7FA /* PlacesNetworking in Frameworks */,
 				520937512ED8ABA7006074C6 /* NeedleFoundation in Frameworks */,
+				5231F7B52EDB717D00EFC7FA /* PlacesNetworking in Frameworks */,
 				525097C32EDB52F40067E30C /* PlacesCore in Frameworks */,
 				5231F5032EDB5D7C00EFC7FA /* PlacesNetworking in Frameworks */,
 			);
@@ -264,6 +268,8 @@
 				520937502ED8ABA7006074C6 /* NeedleFoundation */,
 				525097C22EDB52F40067E30C /* PlacesCore */,
 				5231F5022EDB5D7C00EFC7FA /* PlacesNetworking */,
+				5231F7B12EDB713500EFC7FA /* PlacesNetworking */,
+				5231F7B42EDB717D00EFC7FA /* PlacesNetworking */,
 			);
 			productName = Places;
 			productReference = 52A62A7F2ED58EFA00329DC3 /* Places.app */;
@@ -313,7 +319,7 @@
 				5209374F2ED8ABA7006074C6 /* XCRemoteSwiftPackageReference "needle" */,
 				525321A22ED8BD9E0041DD69 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				525097C12EDB52F40067E30C /* XCLocalSwiftPackageReference "Modules/PlacesCore" */,
-				5231F5012EDB5D7C00EFC7FA /* XCLocalSwiftPackageReference "Modules/PlacesNetworking" */,
+				5231F7B32EDB717D00EFC7FA /* XCLocalSwiftPackageReference "Modules/PlacesNetworking" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 52A62A802ED58EFA00329DC3 /* Products */;
@@ -898,7 +904,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		5231F5012EDB5D7C00EFC7FA /* XCLocalSwiftPackageReference "Modules/PlacesNetworking" */ = {
+		5231F7B32EDB717D00EFC7FA /* XCLocalSwiftPackageReference "Modules/PlacesNetworking" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Modules/PlacesNetworking;
 		};
@@ -939,6 +945,14 @@
 			productName = NeedleFoundationTest;
 		};
 		5231F5022EDB5D7C00EFC7FA /* PlacesNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PlacesNetworking;
+		};
+		5231F7B12EDB713500EFC7FA /* PlacesNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PlacesNetworking;
+		};
+		5231F7B42EDB717D00EFC7FA /* PlacesNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PlacesNetworking;
 		};
