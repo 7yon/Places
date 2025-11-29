@@ -52,6 +52,28 @@
                ReferencedContainer = "container:Places.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "525321F22EDA11170041DD69"
+               BuildableName = "PlacesAccessibilityAuditTests.xctest"
+               BlueprintName = "PlacesAccessibilityAuditTests"
+               ReferencedContainer = "container:Places.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "525322042EDA12800041DD69"
+               BuildableName = "PlacesUITests.xctest"
+               BlueprintName = "PlacesUITests"
+               ReferencedContainer = "container:Places.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

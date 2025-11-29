@@ -34,6 +34,7 @@ struct PlacesListView: View {
                         }
                         .accessibilityHint(.placeItemAccessibilityHint)
                     }
+                    .accessibilityIdentifier("PlacesListView_list")
                 case .error(let message):
                     Text(message)
                 }
@@ -48,6 +49,7 @@ struct PlacesListView: View {
                 }.navigationDestination(isPresented: $customLocationPresented) {
                     CustomLocationView()
                 }
+                .accessibilityIdentifier("PlacesListView_customLocationButton")
             })
             .alert(viewModel.activeAlert, isPresented: Binding(
                 get: { !String(localized: viewModel.activeAlert).isEmpty },

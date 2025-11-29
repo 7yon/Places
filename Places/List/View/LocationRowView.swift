@@ -19,8 +19,11 @@ struct LocationRowView: View {
         VStack(alignment: .leading) {
             Text(name)
                 .font(.headline)
+                .accessibilityIdentifier("LocationRowView_name")
             Text(.placeItemLabelLatitude(location.latitude))
+                .accessibilityIdentifier("LocationRowView_latitude")
             Text(.placeItemLabelLongitude(location.longitude))
+                .accessibilityIdentifier("LocationRowView_longitude")
         }
         .onTapGesture {
             onSelect(location)
@@ -29,6 +32,7 @@ struct LocationRowView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(name)
         .accessibilityValue(.placeItemAccessibilityValue(location.latitude, location.longitude))
+        .accessibilityIdentifier("LocationRowView")
     }
 }
 
