@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlacesCore
 
 @Observable
 class CustomLocationViewModelImpl: CustomLocationViewModel {

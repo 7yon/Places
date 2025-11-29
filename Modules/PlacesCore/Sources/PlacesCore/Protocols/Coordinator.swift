@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Coordinator {
+public protocol Coordinator {
     func route(to route: Route)
     func route(to deeplink: Deeplink) async -> Bool
 }

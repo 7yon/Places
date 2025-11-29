@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PlacesRepository {
-    func fetchPlaces() async throws -> PlacesDTO
+public protocol PlacesRepository {
+    func fetchPlaces() async throws -> [Location]
 }

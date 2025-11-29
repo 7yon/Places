@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PlacesCore
 
 struct LocationRowView: View {
 

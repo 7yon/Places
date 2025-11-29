@@ -14,13 +14,10 @@ analyzer_rules: # rules run by `swiftlint analyze`
 # command line will be ignored.
 included:
   - Places
+  - Modules
 excluded: # case-sensitive paths to ignore during linting. Takes precedence over `included`
-  - Carthage
-  - Pods
-  - Sources/ExcludedFolder
-  - Sources/ExcludedFile.swift
-  - Sources/*/ExcludedFile.swift # exclude files with a wildcard
   - Places/NeedleGenerated.swift
+  - "**/.build/**"
 
 # If true, SwiftLint will not fail if no lintable files are found.
 allow_zero_lintable_files: false

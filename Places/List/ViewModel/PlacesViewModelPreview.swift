@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlacesCore
 
 class PlacesViewModelPreview: PlacesViewModelProtocol {
     var state: PlacesViewModel.ViewState = .idle

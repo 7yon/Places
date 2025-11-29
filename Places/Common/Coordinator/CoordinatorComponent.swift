@@ -8,6 +8,7 @@
 import Foundation
 import NeedleFoundation
 import SwiftUI
+import PlacesCore
 
 protocol CoordinatorDependency: Dependency {
     var urlOpener: URLOpener { get }

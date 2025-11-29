@@ -2,6 +2,7 @@
 
 import Foundation
 import NeedleFoundation
+import PlacesCore
 import SwiftUI
 
 // swiftlint:disable unused_declaration

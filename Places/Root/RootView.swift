@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlacesCore
 import SwiftUI
 
 struct RootView: View {

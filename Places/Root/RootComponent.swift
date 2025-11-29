@@ -7,6 +7,7 @@
 
 import Foundation
 import NeedleFoundation
+import PlacesCore
 
 nonisolated class RootComponent: BootstrapComponent {
     public let environment: AppEnvironment

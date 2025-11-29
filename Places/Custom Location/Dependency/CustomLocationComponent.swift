@@ -7,6 +7,7 @@
 
 import Foundation
 import NeedleFoundation
+import PlacesCore
 
 protocol CustomLocationDependency: Dependency {
     var coordinator: Coordinator { get }

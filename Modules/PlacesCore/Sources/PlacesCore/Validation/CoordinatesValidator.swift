@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol CoordinatesValidator {
+public protocol CoordinatesValidator {
     func isValid(latitude: Double, longitude: Double) -> Bool
 }

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import NeedleFoundation
+import PlacesCore
 
 @Observable
 nonisolated class AppCoordinator: Coordinator {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlacesCore
 
 class PlacesRepositoryImpl: PlacesRepository {
     private let apiClient: ApiClient
@@ -14,10 +15,16 @@ class PlacesRepositoryImpl: PlacesRepository {
         self.apiClient = apiClient
     }
 
-    func fetchPlaces() async throws -> PlacesDTO {
+    func fetchPlaces() async throws -> [Location] {
         let request = Request(path: "locations.json")
         let places: PlacesDTO = try await apiClient.execute(request)
 
-        return places
+        let locations = places.locations.map {
+            Location(name: $0.name,
+                     latitude: $0.latitude,
+                     longitude: $0.longitude)
+        }
+
+        return locations
     }
 }

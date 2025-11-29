@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlacesCore
 import UIKit
 
 final class SystemURLOpener: URLOpener {

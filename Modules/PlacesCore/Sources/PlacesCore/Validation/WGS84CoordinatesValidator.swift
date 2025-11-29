@@ -8,8 +8,12 @@
 import Foundation
 import MapKit
 
-struct WGS84CoordinatesValidator: CoordinatesValidator {
-    func isValid(latitude: Double, longitude: Double) -> Bool {
+public struct WGS84CoordinatesValidator: CoordinatesValidator {
+    public init() {
+
+    }
+
+    public func isValid(latitude: Double, longitude: Double) -> Bool {
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         return CLLocationCoordinate2DIsValid(coordinate)
     }

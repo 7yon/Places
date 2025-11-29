@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		520937512ED8ABA7006074C6 /* NeedleFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 520937502ED8ABA7006074C6 /* NeedleFoundation */; };
 		520937532ED8ABA7006074C6 /* NeedleFoundationTest in Frameworks */ = {isa = PBXBuildFile; productRef = 520937522ED8ABA7006074C6 /* NeedleFoundationTest */; };
+		525097C32EDB52F40067E30C /* PlacesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 525097C22EDB52F40067E30C /* PlacesCore */; };
 		525321A42ED8BD9E0041DD69 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 525321A32ED8BD9E0041DD69 /* SnapshotTesting */; };
 		526D7D622ED82C0F00D55C31 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 526D7D612ED82C0F00D55C31 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
@@ -113,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				520937512ED8ABA7006074C6 /* NeedleFoundation in Frameworks */,
+				525097C32EDB52F40067E30C /* PlacesCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +260,7 @@
 			name = Places;
 			packageProductDependencies = (
 				520937502ED8ABA7006074C6 /* NeedleFoundation */,
+				525097C22EDB52F40067E30C /* PlacesCore */,
 			);
 			productName = Places;
 			productReference = 52A62A7F2ED58EFA00329DC3 /* Places.app */;
@@ -306,6 +309,7 @@
 			packageReferences = (
 				5209374F2ED8ABA7006074C6 /* XCRemoteSwiftPackageReference "needle" */,
 				525321A22ED8BD9E0041DD69 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				525097C12EDB52F40067E30C /* XCLocalSwiftPackageReference "Modules/PlacesCore" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 52A62A802ED58EFA00329DC3 /* Products */;
@@ -881,6 +885,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		525097C12EDB52F40067E30C /* XCLocalSwiftPackageReference "Modules/PlacesCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Modules/PlacesCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		5209374F2ED8ABA7006074C6 /* XCRemoteSwiftPackageReference "needle" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -910,6 +921,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5209374F2ED8ABA7006074C6 /* XCRemoteSwiftPackageReference "needle" */;
 			productName = NeedleFoundationTest;
+		};
+		525097C22EDB52F40067E30C /* PlacesCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PlacesCore;
 		};
 		525321A32ED8BD9E0041DD69 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;

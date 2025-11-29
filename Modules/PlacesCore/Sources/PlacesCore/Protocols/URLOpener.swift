@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol URLOpener {
+public protocol URLOpener {
     func open(_ url: URL) async -> Bool
 }

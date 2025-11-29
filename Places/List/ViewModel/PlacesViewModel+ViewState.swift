@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlacesCore
 
 extension PlacesViewModel {
     enum ViewState {

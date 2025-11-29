@@ -7,6 +7,7 @@
 
 import Foundation
 import Observation
+import PlacesCore
 
 @MainActor
 @Observable
@@ -27,9 +28,6 @@ class PlacesViewModel: PlacesViewModelProtocol {
 
         do {
             let locations = try await repository.fetchPlaces()
-                .locations.map { dto in
-                    Location(name: dto.name, latitude: dto.latitude, longitude: dto.longitude)
-                }
             state = .loaded(locations: locations)
         } catch {
             state = .error(message: .placesListLabelFetchError)

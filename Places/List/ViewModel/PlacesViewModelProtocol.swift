@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlacesCore
 
 protocol PlacesViewModelProtocol {
     var state: PlacesViewModel.ViewState { get }

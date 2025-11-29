@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum Route: Hashable, Codable {
+public enum Route: Hashable, Codable {
     case placesList
     case customLocation
 }
 
-enum Deeplink: Hashable, Codable {
+public enum Deeplink: Hashable, Codable {
     case wikipedia(latitude: Double, longitude: Double)
 }
