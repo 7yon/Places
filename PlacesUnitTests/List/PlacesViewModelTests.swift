@@ -10,17 +10,24 @@ import XCTest
 
 @MainActor
 final class PlacesViewModelTests: XCTestCase {
+    var coordinator: MockCoordinator!
     var viewModel: PlacesViewModel!
 
+    override func setUp() {
+        super.setUp()
+        
+        coordinator = MockCoordinator(deeplinkResult: true)
+    }
+    
     override func tearDown() {
         super.tearDown()
 
         viewModel = nil
+        coordinator = nil
     }
 
     func testWhenCreated_thenStateIdle() {
         let repository = MockPlacesRepository()
-        let coordinator = PlacesCoordinator(urlOpener: MockURLOpener())
         viewModel = PlacesViewModel(repository: repository,
                                     coordinator: coordinator)
         guard case .idle = viewModel.state else {
@@ -30,7 +37,6 @@ final class PlacesViewModelTests: XCTestCase {
 
     func testWhenLoadingIsTriggered_andSuccessResult_thenLoadedState() async {
         let repository = MockPlacesRepository()
-        let coordinator = PlacesCoordinator(urlOpener: MockURLOpener())
         viewModel = PlacesViewModel(repository: repository,
                                     coordinator: coordinator)
 
@@ -45,7 +51,6 @@ final class PlacesViewModelTests: XCTestCase {
 
     func testWhenLoadingIsTriggered_andNetworkError_thenErrorState() async {
         let repository = MockPlacesRepository(error: URLError(.badServerResponse))
-        let coordinator = PlacesCoordinator(urlOpener: MockURLOpener())
         viewModel = PlacesViewModel(repository: repository,
                                     coordinator: coordinator)
 
@@ -60,36 +65,28 @@ final class PlacesViewModelTests: XCTestCase {
 
     func testWhenDidSelectLocation_thenOpenURLIsCalled() async throws {
         let repository = MockPlacesRepository()
-        let urlOpener = MockURLOpener()
-        let coordinator = PlacesCoordinator(urlOpener: urlOpener)
         viewModel = PlacesViewModel(repository: repository,
                                     coordinator: coordinator)
 
         await viewModel.didSelect(location: .amsterdam)
         await viewModel.didSelect(location: .london)
 
-        let amsterdamDeeplink = try XCTUnwrap(URL(string: "wikipedia://places?latitude=52.3702&longitude=4.8951"))
-        let londonDeeplink = try XCTUnwrap(URL(string: "wikipedia://places?latitude=51.5074&longitude=-0.1278"))
-
-        XCTAssertEqual(urlOpener.openedURLs, [
-            amsterdamDeeplink,
-            londonDeeplink
+        XCTAssertEqual(coordinator.deeplinks, [
+            .wikipedia(latitude: 52.3702, longitude: 4.8951),
+            .wikipedia(latitude: 51.5074, longitude: -0.1278),
         ])
     }
 
     func testWhenDidSelectLocation_andCoudntOpenURL_thenAlertShown() async throws {
         let repository = MockPlacesRepository()
-        let urlOpener = MockURLOpener(result: false)
-        let coordinator = PlacesCoordinator(urlOpener: urlOpener)
+        coordinator = MockCoordinator(deeplinkResult: false)
         viewModel = PlacesViewModel(repository: repository,
                                     coordinator: coordinator)
 
         await viewModel.didSelect(location: .amsterdam)
 
-        let amsterdamDeeplink = try XCTUnwrap(URL(string: "wikipedia://places?latitude=52.3702&longitude=4.8951"))
-
-        XCTAssertEqual(urlOpener.openedURLs, [
-            amsterdamDeeplink
+        XCTAssertEqual(coordinator.deeplinks, [
+            .wikipedia(latitude: 52.3702, longitude: 4.8951)
         ])
 
         XCTAssertEqual(String(localized: viewModel.activeAlert), "Wikipedia app is not installed")
@@ -97,8 +94,7 @@ final class PlacesViewModelTests: XCTestCase {
 
     func testWhenDidCloseAlert_thenNoAlertShown() async throws {
         let repository = MockPlacesRepository()
-        let urlOpener = MockURLOpener(result: false)
-        let coordinator = PlacesCoordinator(urlOpener: urlOpener)
+        coordinator = MockCoordinator(deeplinkResult: false)
         viewModel = PlacesViewModel(repository: repository,
                                     coordinator: coordinator)
 
@@ -106,7 +102,7 @@ final class PlacesViewModelTests: XCTestCase {
 
         XCTAssertEqual(String(localized: viewModel.activeAlert), "Wikipedia app is not installed")
 
-        await viewModel.didCloseAlert()
+        viewModel.didCloseAlert()
 
         XCTAssertEqual(String(localized: viewModel.activeAlert), "")
     }
