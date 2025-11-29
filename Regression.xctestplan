@@ -1,0 +1,54 @@
+{
+  "configurations" : [
+    {
+      "id" : "5DC79DF3-2C49-4F1F-84D0-8484311FB6BF",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Places.xcodeproj",
+      "identifier" : "52A62A7E2ED58EFA00329DC3",
+      "name" : "Places"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Places.xcodeproj",
+        "identifier" : "526D7D742ED8371900D55C31",
+        "name" : "PlacesUnitTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Places.xcodeproj",
+        "identifier" : "525321982ED8BD640041DD69",
+        "name" : "PlacesSnapshotTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Places.xcodeproj",
+        "identifier" : "525321F22EDA11170041DD69",
+        "name" : "PlacesAccessibilityAuditTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Places.xcodeproj",
+        "identifier" : "525322042EDA12800041DD69",
+        "name" : "PlacesUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
