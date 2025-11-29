@@ -8,6 +8,7 @@
 import Foundation
 import NeedleFoundation
 import PlacesCore
+import PlacesNetworking
 
 nonisolated class RootComponent: BootstrapComponent {
     public let environment: AppEnvironment
@@ -24,7 +25,8 @@ nonisolated class RootComponent: BootstrapComponent {
 
     @MainActor
     public var apiClient: ApiClient {
-        return URLSessionApiClient(config: environment.configuration)
+        let config = PlacesNetworking.Configuration(baseURL: environment.configuration.baseURL)
+        return URLSessionApiClient(config: config)
     }
 
     var coordinatorComponent: CoordinatorComponent {

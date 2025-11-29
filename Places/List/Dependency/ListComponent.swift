@@ -8,6 +8,7 @@
 import Foundation
 import NeedleFoundation
 import PlacesCore
+import PlacesNetworking
 
 protocol ListDependency: Dependency {
     var apiClient: ApiClient { get }

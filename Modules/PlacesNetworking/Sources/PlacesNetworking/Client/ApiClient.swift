@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ApiError: Error {
+public enum ApiError: Error {
     case decodingError
     case invalidStatusCode
     case unknown(Error)
@@ -16,7 +16,7 @@ enum ApiError: Error {
 }
 
 /// An environment-aware API client for performing network requests.
-protocol ApiClient {
+public protocol ApiClient {
     /// Executes the specified request. Throws an `ApiError` if the operation fails.
     ///
     /// - Parameter request: Information describing the request to perform.

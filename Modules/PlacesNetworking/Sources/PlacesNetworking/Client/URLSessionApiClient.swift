@@ -7,16 +7,16 @@
 
 import Foundation
 
-class URLSessionApiClient: ApiClient {
-    private let config: AppEnvironment.Configuration
+public class URLSessionApiClient: ApiClient {
+    private let config: Configuration
     private let session = URLSession.shared
     private let decoder = JSONDecoder()
 
-    init(config: AppEnvironment.Configuration) {
+    public init(config: Configuration) {
         self.config = config
     }
 
-    func execute<T: Decodable>(_ request: Request) async throws -> T {
+    public func execute<T: Decodable>(_ request: Request) async throws -> T {
         let url = config.baseURL.appending(path: request.path)
 
         let (data, _) = try await data(from: url)
