@@ -23,8 +23,8 @@ final class CustomLocationSnapshotTests: XCTestCase {
         let viewModel = MockCustomLocationViewModel()
         let view = CustomLocationView(viewModel: viewModel)
         
-        assertSnapshot(of: view, as: .image(layout: .sizeThatFits))
-        assertSnapshot(of: view, as: .image(layout: .sizeThatFits, traits: .init(userInterfaceStyle: .dark)))
+        assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13)))
+        assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13), traits: .init(userInterfaceStyle: .dark)))
     }
     
     func testErrorState() {
@@ -33,8 +33,8 @@ final class CustomLocationSnapshotTests: XCTestCase {
         viewModel.longitude = "90"
         let view = CustomLocationView(viewModel: viewModel)
         
-        assertSnapshot(of: view, as: .image(layout: .sizeThatFits))
-        assertSnapshot(of: view, as: .image(layout: .sizeThatFits, traits: .init(userInterfaceStyle: .dark)))
+        assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13)))
+        assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13), traits: .init(userInterfaceStyle: .dark)))
     }
     
     func testValidState() {
@@ -44,7 +44,7 @@ final class CustomLocationSnapshotTests: XCTestCase {
         viewModel.coordinatesAreValid = true
         let view = CustomLocationView(viewModel: viewModel)
         
-        assertSnapshot(of: view, as: .image(layout: .sizeThatFits))
-        assertSnapshot(of: view, as: .image(layout: .sizeThatFits, traits: .init(userInterfaceStyle: .dark)))
+        assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13)))
+        assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13), traits: .init(userInterfaceStyle: .dark)))
     }
 }
