@@ -1,33 +1,63 @@
 # Places
 
-An iOS application for exploring places and locations.
+- **Browse Locations**: View a list of interesting places.
+- **Deep Link to Wikipedia**: Navigate directly to the Wikipedia app for more details on a specific location via deep links (requires https://github.com/7yon/wikipedia-ios from main branch to be installed). 
+- **Custom Location Entry**: Input specific coordinates, which can then be used to navigate to Wikipedia.
 
-## Prerequisites
+The app is built with a strong focus on accessibility and a smooth experience.
 
-- Xcode (latest version recommended)
+## 🚀 Setup & Requirements
 
-## Setup
+- **Xcode**: 16.0+
+- **iOS**: 17.0+
 
-To set up the project for development, run the setup script from the project root:
+To get started, run the setup script which handles dependencies (Homebrew tools) and installs git hooks for linting:
 
 ```bash
-./scripts/setup.sh
+sh scripts/setup.sh
 ```
 
-This script will:
-- Install and upgrade required Homebrew formulae
-- Configure Git hooks for code quality validation
+## 🏗 Architecture & Technical Decisions
 
-## Git Hooks
+I chose a modular approach to ensure clear separation of concerns and to simulate a structure suitable for larger teams.
 
-The project uses Git hooks to maintain code quality. During setup, a pre-commit hook is automatically installed that:
+### Modularization
+The project is split into feature and core modules:
+- **Places**: Composition root.
+- **PlacesCore**: Shared logic and models.
+- **PlacesNetworking**: Isolated networking layer.
 
-- **Validates SwiftLint compliance** before each commit
-- Runs SwiftLint in strict mode to ensure all code meets the project's style guidelines
-- Prevents commits if SwiftLint violations are found
+### Design Patterns
+- **MVVM+C**: I used MVVM for the presentation layer to keep Views lightweight and testable. Coordinators handle navigation, ensuring that Views remain unaware of the navigation flow.
+- **Dependency Injection**: Implemented using **Needle**. I prefer compile-time safety for DI to catch graph issues early, rather than at runtime.
+- **Concurrency**: The app uses Swift's modern `async/await` and Actors for handling asynchronous tasks and thread safety, fulfilling the assignment's bonus requirement.
 
-If SwiftLint is not installed, the hook will provide installation instructions.
+## 📱 UI & Accessibility
 
-## Development
+The UI is built 100% with **SwiftUI**.
 
-Open `Places.xcodeproj` in Xcode to start development.
+- **Accessibility**: I've ensured the app is accessible by adding custom identifiers, labels, and hints. It supports Dynamic Type and VoiceOver, addressing the assignment's focus on inclusive design.
+- **Deep Linking**: The app supports deep linking to specific coordinates (e.g., opening a location from a URL).
+
+## 🧪 Testing
+
+I've included a mix of testing strategies to cover different aspects of the app:
+
+- **Unit Tests**: Focused on ViewModels and business logic.
+- **Snapshot Tests**: Using `swift-snapshot-testing` to catch UI regressions across different states.
+  > [!WARNING]
+  > Snapshots were recorded on an **iPhone 17 Pro (iOS 26)** with an **Apple M4 chip**. Running these tests on a different device, OS version, or chip architecture may result in failures due to rendering differences. The recommended approach is to always record and validate snapshots on a CI environment with a fixed build stack.
+- **UI Tests**: Covering critical user flows.
+- **Accessibility Audit**: Automated checks to ensure basic accessibility compliance.
+
+## 🔄 Development Process
+
+I worked locally, using git to track my progress incrementally. The commit history reflects the step-by-step implementation of features, refactoring, and architectural improvements. I also integrated **SwiftLint** to strictly enforce code style and maintain high code quality throughout the development lifecycle.
+
+## 🛠 Tooling
+
+- **SwiftLint**: Enforced via git hooks to maintain a consistent code style.
+- **Scripts**: Helper scripts in `/scripts` to automate setup and environment configuration.
+
+---
+*Submitted by Daria Simenkova*

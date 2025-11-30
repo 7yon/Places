@@ -12,6 +12,8 @@
 		5231F5032EDB5D7C00EFC7FA /* PlacesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 5231F5022EDB5D7C00EFC7FA /* PlacesNetworking */; };
 		5231F7B22EDB713500EFC7FA /* PlacesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 5231F7B12EDB713500EFC7FA /* PlacesNetworking */; };
 		5231F7B52EDB717D00EFC7FA /* PlacesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 5231F7B42EDB717D00EFC7FA /* PlacesNetworking */; };
+		5231FAAC2EDB89C700EFC7FA /* TECHNICAL_DECISIONS.md in Resources */ = {isa = PBXBuildFile; fileRef = 5231FAAB2EDB89C700EFC7FA /* TECHNICAL_DECISIONS.md */; };
+		5231FAAD2EDB89C700EFC7FA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5231FAAA2EDB89C700EFC7FA /* README.md */; };
 		525097C32EDB52F40067E30C /* PlacesCore in Frameworks */ = {isa = PBXBuildFile; productRef = 525097C22EDB52F40067E30C /* PlacesCore */; };
 		525321A42ED8BD9E0041DD69 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 525321A32ED8BD9E0041DD69 /* SnapshotTesting */; };
 		526D7D622ED82C0F00D55C31 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 526D7D612ED82C0F00D55C31 /* Localizable.xcstrings */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5231FAAA2EDB89C700EFC7FA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5231FAAB2EDB89C700EFC7FA /* TECHNICAL_DECISIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TECHNICAL_DECISIONS.md; sourceTree = "<group>"; };
 		525097B52EDB39DF0067E30C /* Regression.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Regression.xctestplan; sourceTree = "<group>"; };
 		525321992ED8BD640041DD69 /* PlacesSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		525321F32EDA11170041DD69 /* PlacesAccessibilityAuditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesAccessibilityAuditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +134,8 @@
 		52A62A762ED58EFA00329DC3 = {
 			isa = PBXGroup;
 			children = (
+				5231FAAA2EDB89C700EFC7FA /* README.md */,
+				5231FAAB2EDB89C700EFC7FA /* TECHNICAL_DECISIONS.md */,
 				525097B52EDB39DF0067E30C /* Regression.xctestplan */,
 				526D7D612ED82C0F00D55C31 /* Localizable.xcstrings */,
 				52A62A812ED58EFA00329DC3 /* Places */,
@@ -369,6 +375,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				526D7D622ED82C0F00D55C31 /* Localizable.xcstrings in Resources */,
+				5231FAAC2EDB89C700EFC7FA /* TECHNICAL_DECISIONS.md in Resources */,
+				5231FAAD2EDB89C700EFC7FA /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
