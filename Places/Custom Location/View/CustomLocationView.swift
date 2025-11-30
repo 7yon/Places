@@ -30,7 +30,6 @@ struct CustomLocationView: View {
                         .textFieldStyle(CoordinateTextFieldStyle())
                         .accessibilityIdentifier("CustomLocationView_longitudeTextField")
                 }
-                .accessibilityIdentifier("CustomLocationView_coordinatesSection")
 
             Section {
                 if viewModel.coordinatesAreValid {

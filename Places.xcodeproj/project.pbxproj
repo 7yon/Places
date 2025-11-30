@@ -27,13 +27,6 @@
 			remoteGlobalIDString = 52A62A7E2ED58EFA00329DC3;
 			remoteInfo = Places;
 		};
-		525321F92EDA11170041DD69 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52A62A772ED58EFA00329DC3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52A62A7E2ED58EFA00329DC3;
-			remoteInfo = Places;
-		};
 		5253220B2EDA12800041DD69 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52A62A772ED58EFA00329DC3 /* Project object */;
@@ -55,7 +48,6 @@
 		5231FAAB2EDB89C700EFC7FA /* TECHNICAL_DECISIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TECHNICAL_DECISIONS.md; sourceTree = "<group>"; };
 		525097B52EDB39DF0067E30C /* Regression.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Regression.xctestplan; sourceTree = "<group>"; };
 		525321992ED8BD640041DD69 /* PlacesSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		525321F32EDA11170041DD69 /* PlacesAccessibilityAuditTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesAccessibilityAuditTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		525322052EDA12800041DD69 /* PlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		526D7D612ED82C0F00D55C31 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		526D7D752ED8371900D55C31 /* PlacesUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,13 +83,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				525321A42ED8BD9E0041DD69 /* SnapshotTesting in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		525321F02EDA11170041DD69 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +137,6 @@
 				52A62A7F2ED58EFA00329DC3 /* Places.app */,
 				526D7D752ED8371900D55C31 /* PlacesUnitTests.xctest */,
 				525321992ED8BD640041DD69 /* PlacesSnapshotTests.xctest */,
-				525321F32EDA11170041DD69 /* PlacesAccessibilityAuditTests.xctest */,
 				525322052EDA12800041DD69 /* PlacesUITests.xctest */,
 			);
 			name = Products;
@@ -184,26 +168,6 @@
 			productName = PlacesSnapshotTests;
 			productReference = 525321992ED8BD640041DD69 /* PlacesSnapshotTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		525321F22EDA11170041DD69 /* PlacesAccessibilityAuditTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 525321FB2EDA11170041DD69 /* Build configuration list for PBXNativeTarget "PlacesAccessibilityAuditTests" */;
-			buildPhases = (
-				525321EF2EDA11170041DD69 /* Sources */,
-				525321F02EDA11170041DD69 /* Frameworks */,
-				525321F12EDA11170041DD69 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				525321FA2EDA11170041DD69 /* PBXTargetDependency */,
-			);
-			name = PlacesAccessibilityAuditTests;
-			packageProductDependencies = (
-			);
-			productName = PlacesAccessibilityAuditTests;
-			productReference = 525321F32EDA11170041DD69 /* PlacesAccessibilityAuditTests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		525322042EDA12800041DD69 /* PlacesUITests */ = {
 			isa = PBXNativeTarget;
@@ -295,10 +259,6 @@
 						CreatedOnToolsVersion = 26.1.1;
 						TestTargetID = 52A62A7E2ED58EFA00329DC3;
 					};
-					525321F22EDA11170041DD69 = {
-						CreatedOnToolsVersion = 26.1.1;
-						TestTargetID = 52A62A7E2ED58EFA00329DC3;
-					};
 					525322042EDA12800041DD69 = {
 						CreatedOnToolsVersion = 26.1.1;
 						TestTargetID = 52A62A7E2ED58EFA00329DC3;
@@ -335,7 +295,6 @@
 				52A62A7E2ED58EFA00329DC3 /* Places */,
 				526D7D742ED8371900D55C31 /* PlacesUnitTests */,
 				525321982ED8BD640041DD69 /* PlacesSnapshotTests */,
-				525321F22EDA11170041DD69 /* PlacesAccessibilityAuditTests */,
 				525322042EDA12800041DD69 /* PlacesUITests */,
 			);
 		};
@@ -343,13 +302,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		525321972ED8BD640041DD69 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		525321F12EDA11170041DD69 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -429,13 +381,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		525321EF2EDA11170041DD69 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		525322012EDA12800041DD69 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,11 +409,6 @@
 			isa = PBXTargetDependency;
 			target = 52A62A7E2ED58EFA00329DC3 /* Places */;
 			targetProxy = 5253219D2ED8BD640041DD69 /* PBXContainerItemProxy */;
-		};
-		525321FA2EDA11170041DD69 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 52A62A7E2ED58EFA00329DC3 /* Places */;
-			targetProxy = 525321F92EDA11170041DD69 /* PBXContainerItemProxy */;
 		};
 		5253220C2EDA12800041DD69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -524,46 +464,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Places.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Places";
-			};
-			name = Release;
-		};
-		525321FC2EDA11170041DD69 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LKB4X4736R;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simenkova.PlacesAccessibilityAuditTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Places;
-			};
-			name = Debug;
-		};
-		525321FD2EDA11170041DD69 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LKB4X4736R;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simenkova.PlacesAccessibilityAuditTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Places;
 			};
 			name = Release;
 		};
@@ -860,15 +760,6 @@
 			buildConfigurations = (
 				525321A02ED8BD640041DD69 /* Debug */,
 				525321A12ED8BD640041DD69 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		525321FB2EDA11170041DD69 /* Build configuration list for PBXNativeTarget "PlacesAccessibilityAuditTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				525321FC2EDA11170041DD69 /* Debug */,
-				525321FD2EDA11170041DD69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

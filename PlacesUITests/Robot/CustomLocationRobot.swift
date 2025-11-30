@@ -9,6 +9,7 @@ import Foundation
 import XCTest
 
 class CustomLocationRobot {
+
     private var latitudeTextField = XCUIApplication().textFields.matching(identifier: "CustomLocationView_latitudeTextField").firstMatch
     private var longitudeTextField = XCUIApplication().textFields.matching(identifier: "CustomLocationView_longitudeTextField").firstMatch
     
@@ -16,6 +17,8 @@ class CustomLocationRobot {
     private var invalidCoordinatesErrorLabel = XCUIApplication().staticTexts.matching(identifier: "CustomLocationView_invariantCoordinatesErrorLabel").firstMatch
 
     func enter(latitude: String) -> Self {
+        XCTAssertTrue(latitudeTextField.waitForExistence(timeout: 3))
+        
         latitudeTextField.tap()
         latitudeTextField.typeText(latitude)
         
@@ -23,6 +26,8 @@ class CustomLocationRobot {
     }
     
     func enter(longitude: String) -> Self {
+        XCTAssertTrue(longitudeTextField.waitForExistence(timeout: 3))
+        
         longitudeTextField.tap()
         longitudeTextField.typeText(longitude)
         
@@ -56,7 +61,6 @@ class CustomLocationRobot {
     func performAccessibilityAudit() throws {
         let ignored = ["CustomLocationView_sectionHeader",
                        "CustomLocationView_sectionFooter",
-                       "CustomLocationView_coordinatesSection",
                        "CustomLocationView_invariantCoordinatesErrorLabel"]
         
         try XCUIApplication().performAccessibilityAudit() { issue in
