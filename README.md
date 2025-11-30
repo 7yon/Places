@@ -24,10 +24,25 @@ I chose a modular approach to ensure clear separation of concerns and to simulat
 For a detailed overview of the architectural choices, please refer to [Technical Decisions](TECHNICAL_DECISIONS.md).
 
 ### Modularization
-The project is split into feature and core modules:
+The project is split into app and core modules:
 - **Places**: Composition root.
 - **PlacesCore**: Shared logic and models.
 - **PlacesNetworking**: Isolated networking layer.
+
+### Project Structure
+
+```text
+Places
+├── Modules                 # Modularized code (Core, Networking)
+│   ├── PlacesCore          # Shared logic and models
+│   └── PlacesNetworking    # Networking layer
+├── Places                  # Main App Target (Composition Root)
+├── PlacesUnitTests         # Unit Tests
+├── PlacesSnapshotTests     # Snapshot Tests
+├── PlacesUITests           # UI Tests
+├── scripts                 # Setup and utility scripts
+└── hooks                   # Git hooks (SwiftLint)
+```
 
 ### Design Patterns
 - **MVVM+C**: I used MVVM for the presentation layer to keep Views lightweight and View Models testable. Coordinators handle navigation, ensuring that Views remain unaware of the navigation flow.
