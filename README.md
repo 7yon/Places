@@ -19,6 +19,8 @@ sh scripts/setup.sh
 
 I chose a modular approach to ensure clear separation of concerns and to simulate a structure suitable for larger teams.
 
+For a detailed overview of the architectural choices, please refer to [Technical Decisions](TECHNICAL_DECISIONS.md).
+
 ### Modularization
 The project is split into feature and core modules:
 - **Places**: Composition root.
