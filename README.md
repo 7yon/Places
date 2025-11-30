@@ -4,6 +4,10 @@
 - **Deep Link to Wikipedia**: Navigate directly to the Wikipedia app for more details on a specific location via deep links. Note: https://github.com/7yon/wikipedia-ios/pull/1 with changes related to a new deep link format is already merged to the main branch.
 - **Custom Location Entry**: Input specific coordinates, which can then be used to navigate to Wikipedia.
 
+## 📹 Demo Video
+
+<video src="Simulator%20Screen%20Recording.mov" controls width="200"></video>
+
 ## 🚀 Setup & Requirements
 
 - **Xcode**: 26.0+
