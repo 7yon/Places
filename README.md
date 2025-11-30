@@ -6,7 +6,7 @@
 
 ## 🚀 Setup & Requirements
 
-- **Xcode**: 16.0+
+- **Xcode**: 26.0+
 - **iOS**: 17.0+
 
 To get started, run the setup script which handles dependencies (Homebrew tools) and installs git hooks for linting:
