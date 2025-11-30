@@ -7,7 +7,7 @@ This document outlines the key architectural decisions and patterns used in the 
 **Selected Version:** iOS 17.0
 
 **Reasoning:**
-- **Adoption Rate:** The majority of iOS users are on iOS 17 or higher ([source](https://gs.statcounter.com/ios-version-market-share/all/europe)).
+- **Adoption Rate:** The majority of iOS users are on iOS 17 or higher in Europe ([source](https://gs.statcounter.com/ios-version-market-share/all/europe)).
 - **Modern Features:** Targeting iOS 17 allows us to leverage the latest advancements in SwiftUI (e.g., `Observation` framework, improved navigation APIs) and Swift, resulting in cleaner, more performant, and maintainable code.
 
 ## MVVM (Model-View-ViewModel)
@@ -52,3 +52,11 @@ This document outlines the key architectural decisions and patterns used in the 
 - **VoiceOver:** UI elements are configured with appropriate accessibility labels, hints, and traits to support VoiceOver users.
 - **Dynamic Type:** The app supports Dynamic Type, ensuring that text scales correctly according to the user's system settings.
 - **Semantic Views:** Usage of standard SwiftUI controls ensures a high level of default accessibility support.
+
+## Localization
+
+**Format:** String Catalogs (.xcstrings)
+
+**Reasoning:**
+- **Modern Workflow:** String Catalogs provide a visual editor and unified way to manage translations, replacing legacy `.strings` and `.stringsdict` files.
+- **Safety:** The compiler verifies that keys used in code exist in the catalog, reducing missing translation errors.
