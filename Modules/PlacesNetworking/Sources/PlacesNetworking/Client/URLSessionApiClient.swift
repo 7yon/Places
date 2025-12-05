@@ -36,7 +36,7 @@ public class URLSessionApiClient: ApiClient {
     /// - Returns: The decoded response of type `T`.
     /// - Throws: An `ApiError` if the network request fails, the status code
     ///   is not in the 2xx range, or decoding fails.
-    public func execute<T: Decodable>(_ request: Request) async throws -> T {
+    public func execute<T: Decodable>(_ request: Request) async throws(ApiError) -> T {
         let url = config.baseURL.appending(path: request.path)
 
         let (data, _) = try await data(from: url)
@@ -46,7 +46,7 @@ public class URLSessionApiClient: ApiClient {
         return decodedResponse
     }
 
-    private func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
+    private func decode<T: Decodable>(_ type: T.Type, from data: Data) throws(ApiError) -> T {
         do {
             let decodedResponse = try decoder.decode(T.self, from: data)
             return decodedResponse
@@ -55,7 +55,7 @@ public class URLSessionApiClient: ApiClient {
         }
     }
 
-    private func data(from url: URL) async throws -> (Data, URLResponse) {
+    private func data(from url: URL) async throws(ApiError) -> (Data, URLResponse) {
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
 
@@ -63,6 +63,8 @@ public class URLSessionApiClient: ApiClient {
                 throw ApiError.invalidStatusCode
             }
             return (data, response)
+        } catch let apiError as ApiError {
+            throw apiError
         } catch {
             throw ApiError.unknown(error)
         }

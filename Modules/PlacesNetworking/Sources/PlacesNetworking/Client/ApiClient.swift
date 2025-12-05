@@ -43,5 +43,5 @@ public protocol ApiClient {
     /// - Returns: The decoded response of type `T`.
     /// - Throws: An `ApiError` if the network request fails, the response
     ///   status code is invalid, or decoding the response fails.
-    func execute<T: Decodable>(_ request: Request) async throws -> T
+    func execute<T: Decodable>(_ request: Request) async throws(ApiError) -> T
 }

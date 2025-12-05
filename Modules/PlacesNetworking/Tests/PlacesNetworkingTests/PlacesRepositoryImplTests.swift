@@ -15,7 +15,7 @@ final class PlacesRepositoryImplTests: XCTestCase {
         let apiClient = MockAPiClient(fetchPlacesResult: .success(placesDTO))
         let repository = PlacesRepositoryImpl(apiClient: apiClient)
 
-        let locations = awaitrepository.fetchPlaces()
+        let locations = try await repository.fetchPlaces()
 
         XCTAssertTrue(locations.count == 1)
         XCTAssertEqual(locations.first?.name, "London")
